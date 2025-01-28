@@ -15,8 +15,25 @@ to the nearest airport in the cities of: DALLAS, TEXAS & CHICAGO, ILLINOIS
 
 
 # 2. Choose A Map API & Fetch Data
+# API Key: e67a1284-b622-4338-8add-070e4452f61e
+# 2a. Installation
+         #:pip install apiverve-airportslookup
+# 2b. Import the client module
+from apiverve_airportslookup.apiClient import AirportsAPIClient
 
+# 2c. Initialize the client with your APIVerve API key
+api = AirportsAPIClient("[e67a1284-b622-4338-8add-070e4452f61e]")
 
+# 2d. Define Query
+#query = { "iata": "MCI" }
+
+# 2e. Make a request to the API
+#result = api.execute(query)
+
+# 2f. Print the result
+print(result)
+
+2g IATA Codes
 
 # 3. Write Data to Excel File
 
