@@ -1,0 +1,46 @@
+"""
+This is the final Project for the Vets In Tech "Python Fundamentals" course that was completed by Nathan Held and I.
+We are trying to find if there is a correlation between the rent rate in Multifamily Apartment Complexes and the distance
+to the nearest airport in the cities of: DALLAS, TEXAS & CHICAGO, ILLINOIS
+"""
+
+# ------------------------------------------------------------------
+
+         # MAP API
+
+# 1. Set Up Your Environment - Install necessary libraries
+
+
+
+
+
+# 2. Choose A Map API & Fetch Data
+
+
+
+# 3. Write Data to Excel File
+
+
+
+# ------------------------------------------------------------------
+
+         # COMMERCIAL REAL ESTATE API
+
+# 1. Set Up Your Environment - Install necessary libraries
+
+
+
+
+
+# 2. Choose A CRE API & Fetch Data
+
+
+
+# 3. Write Data to Excel File
+
+
+# ------------------------------------------------------------------
+
+         # COMBINE DATA
+
+# 1. Combine Data in a meaningful way to a third spreadsheet
