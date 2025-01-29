@@ -3,7 +3,7 @@
 # 2. Choose A Map API & Fetch Data
 # 
 # 2a. Airport API PIP Installation
-  # pip install apiverve-airportslookup
+    # pip install apiverve-airportslookup
 # 
 # 2b. Airport API Key
   # API Key: e67a1284-b622-4338-8add-070e4452f61e from NCHeld linked GitHub at https://apiverve.com/dashboard/
@@ -31,7 +31,7 @@
     #   query = { "iata": "GYY" }
     #   query = { "iata": "RFD" }
 # 2e. Make a request to the API
-#   result = api.execute(query)
+    #   result = api.execute(query)
 
 # Print the result
-#   print(result)
+    #   print(result)
