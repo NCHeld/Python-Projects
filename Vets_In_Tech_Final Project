@@ -1,7 +1,8 @@
 """
+            *** ON MARKET ***
 This is the final Project for the Vets In Tech "Python Fundamentals" course that was completed by Nathan Held and I.
-We are trying to find if there is a correlation between the rent rate in Multifamily Apartment Complexes and the distance
-to the nearest airport in the cities of: DALLAS, TEXAS & CHICAGO, ILLINOIS
+We are trying to find the distance to the nearest airport in the cities of: DALLAS, TEXAS & CHICAGO, ILLINOIS
+from Multifamily Apartment Complexes that are currently for sale. 
 """
 
 # ------------------------------------------------------------------
@@ -57,16 +58,110 @@ print(result)
 
 # 1. Set Up Your Environment - Install necessary libraries
 
+# pip install openpyxl - if not already done
+
+import requests
+import json 
+
+# 2. Choose A REAL ESTATE API & Fetch Data
+        # fetch 10 Multifamily Family Apartment Complexes in Chicago, Illinois & Dallas, Texas from https://app.rentcast.io/app/api
+
+# Your RentCast API key
+API_KEY = "626c9fb38e184afc9a3f42586ee4bc98"
+
+# API endpoint
+url = "https://app.rentcast.io/app/api"
+
+response = requests.get(url) 
+
+# print to verify we have a status code of 200
+
+print(response)     # <Response [200]> (500 if Server is down)
+
+
+# Fetching data from the API for Dallas, Texas (FOR PROPERTIES SOLD WITHIN THE LAST YEAR)
+Dallas_Query2 = "https://api.rentcast.io/v1/listings/sale?city=Dallas&state=TX&propertyType=Multi-Family&status=Active"
+
+# Headers for authentication
+headers = {
+    "accept": "application/json",
+    "X-Api-Key": API_KEY
+}
+
+# Fetch data from the RentCast API
+ResponseDallas2 = requests.get(Dallas_Query2, headers=headers)
+
+# Check response status
+
+if ResponseDallas2.status_code == 200:
+    data = ResponseDallas2.json()  # Parse JSON response
+    print("Fetched Data:", data)
+    print(data)
+else:
+    print(f"Failed to fetch data. Status code: {ResponseDallas2.status_code}, Message: {ResponseDallas2.text}")
 
 
 
+print(f"Status Code: {ResponseDallas2.status_code}")
+print(f"Response Text: {ResponseDallas2.text}")
 
-# 2. Choose A CRE API & Fetch Data
+
+
+# Fetching data from the API for Chicago, Illinois (FOR PROPERTIES SOLD WITHIN THE LAST YEAR)
+Chicago_Query2 = "https://api.rentcast.io/v1/listings/sale?city=Chicago&state=IL&propertyType=Multi-Family&status=Active"
+
+# Headers for authentication
+headers = {
+    "accept": "application/json",
+    "X-Api-Key": API_KEY
+}
+
+# Fetch data from the RentCast API
+ResponseChicago2 = requests.get(Chicago_Query2, headers=headers)
+
+# Check response status
+
+if ResponseChicago2.status_code == 200:
+    data = ResponseChicago2.json()  # Parse JSON response
+    print("Fetched Data:", data)
+    print(data)
+else:
+    print(f"Failed to fetch data. Status code: {ResponseChicago2.status_code}, Message: {ResponseChicago2.text}")
 
 
 
-# 3. Write Data to Excel File
+print(f"Status Code: {ResponseChicago2.status_code}")
+print(f"Response Text: {ResponseChicago2.text}")
 
+
+# Write Data to an Excel File
+
+import requests
+import pandas as pd
+
+# Fetch data for Dallas
+Dallas_Data2 = ResponseDallas2.json() if ResponseDallas2.status_code == 200 else []
+
+# Fetch data for Chicago
+Chicago_Data2 = ResponseChicago2.json() if ResponseChicago2.status_code == 200 else []
+
+# Convert JSON responses to DataFrames
+df_dallas2 = pd.DataFrame(Dallas_Data2)
+df_chicago2 = pd.DataFrame(Chicago_Data2)
+
+# Create five blank rows (to separate datasets)
+empty_rows = pd.DataFrame([[""] * len(df_dallas2.columns)] * 5, columns=df_dallas2.columns)
+
+# Combine both DataFrames with a gap
+df_combined = pd.concat([df_dallas2, empty_rows, df_chicago2], ignore_index=True)
+
+# Define the file path
+file_path = r"C:/Users/moise/Downloads/Data Analysis/VetsInTech/Python Fundamentals/Final Project/Final Project On Market Bulk CRE Data.xlsx"
+
+# Save to Excel
+df_combined.to_excel(file_path, index=False)
+
+print(f"Data successfully saved to {file_path}")
 
 # ------------------------------------------------------------------
 
